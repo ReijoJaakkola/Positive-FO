@@ -1,0 +1,6 @@
+
+src/vc140.pdb
+build
+src/.vs
+src/.vscode
+src/out
