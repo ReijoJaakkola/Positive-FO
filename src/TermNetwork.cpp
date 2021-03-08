@@ -47,7 +47,7 @@ namespace prover {
                 if (position < 0) {
                     m_terms.push_back(term);
                     m_edges.push_back(std::vector<int>());
-                    position = m_terms.size() - 1;
+                    position = static_cast<int>(m_terms.size()) - 1;
                 }
                 previousTerms.push(term);
                 previousIndexes.push(position);
@@ -69,7 +69,7 @@ namespace prover {
                 if (position < 0) {
                     m_terms.push_back(newTerm);
                     m_edges.push_back(std::vector<int>());
-                    position = m_terms.size() - 1;
+                    position = static_cast<int>(m_terms.size()) - 1;
 
                     counter = arity;
                     while (counter > 0) {
