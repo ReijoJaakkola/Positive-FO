@@ -1,0 +1,73 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[toc,page]{appendix}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{verbatim}
+\usepackage{setspace}
+\usepackage{qtree}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{stmaryrd}
+\usepackage{authblk}
+\usepackage[margin=1.4in]{geometry}
+
+\author{Reijo Jaakkola}
+
+\begin{document}
+
+\setlength\abovedisplayskip{3pt}
+\setlength\belowdisplayskip{3pt}
+
+\title{Encoding NP-hard  problems}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\newcommand{\PFO}{\mathrm{FO}^+}
+
+\maketitle
+
+
+The purpose of this note is to give several reductions from NP-hard graph problems to the validity problem of positive first-order logic $\PFO$. We will start by giving reductions for the following
+problems.
+\begin{enumerate}
+	\item Hamiltonian circuit. The task is to determine whether a given graph contains a cycle that "visits" each vertex exactly ones.
+           \item Clique set. The task is to determine whether a given graph contains a set of $k$-vertices so that every two members of the set are adjacent.
+           \item Vertex cover. The task is to determine whether a given graph contains a set of $k$-vertices so that for every edge of the graph, at least one of its endpoints belongs to this set.
+\end{enumerate}
+First we will introduce some notation. Let $G = (V,E)$ be the input graph, where $V = \{v_1,...,v_n\}$. We will use $\Sigma(G)$ to denote
+the following set of atomic formulas.
+\[\{c_i \neq c_j \mid 1\leq i < j \leq n\} \cup \{c_i E c_j \mid (v_i,v_j) \in E\} \cup \{\neg c_i E c_j \mid (c_i,c_j) \not\in E\}.\]
+Notice that we are using $E$ to denote both a binary relational symbol $E$ as well as the edge set. Now we will associate to each of the above problems a sentence $\phi$
+of $\PFO$ with the property that $\Sigma(G)\models \phi$ if and only if $\Sigma(G)$ is a positive instance of the problem.
+\begin{enumerate}
+	\item In the case of Hamiltonian circuit the sentence is
+	\[\exists x_1 ... \exists x_n (\bigwedge_{1\leq i\leq n} \bigvee_{1\leq j\leq n} c_i = x_j \land \bigwedge_{1\leq i < n} x_i E x_{i+1} \land x_n E x_1)\]
+	\item In the case of clique set the sentence is
+	\[\exists x_1 ... \exists x_k \bigwedge_{1\leq i \leq k} \bigwedge_{1\leq j\leq k} x_i E x_j\]
+	\item In the case of vertex cover the sentence is
+	\[\exists x_1 ... \exists x_k (\bigwedge_{1\leq \ell \leq k} \bigvee_{1\leq i \leq n} x_\ell = c_i \land \bigwedge_{c_i E c_j} \bigvee_{1\leq \ell \leq k} (x_\ell = c_i \lor x_\ell = c_j))\]
+\end{enumerate}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
